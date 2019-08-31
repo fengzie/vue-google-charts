@@ -1,11 +1,8 @@
 {
-  "name": "vue-google-charts",
+  "name": "vue-google-charts-timeline",
   "description": "Reactive Vue.js wrapper for Google Charts lib",
-  "version": "0.3.2",
-  "author": {
-    "name": "Refat",
-    "email": "nobilix@gmail.com"
-  },
+  "version": "0.1.0",
+  "author": "fengzie <526567244@qq.com>",
   "keywords": [
     "vue",
     "vuejs",
@@ -26,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devstark-com/vue-google-charts.git"
+    "url": "git+https://github.com/fengzie/vue-google-charts.git"
   },
   "bugs": {
     "url": "https://github.com/devstark-com/vue-google-charts/issues"

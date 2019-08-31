@@ -87,7 +87,21 @@ export default {
   methods: {
     drawChart () {
       if (!chartsLib || !this.chartObject) return
-      const data = this.getValidChartData()
+
+      let data = this.getValidChartData()
+      console.log('The gchart type is:' + this.type)
+      if (
+        this.type === 'Timeline' &&
+        this.data instanceof chartsLib.visualization.DataTable
+      ) {
+        data.addColumn({ type: 'string', id: 'MachineID' })
+        data.addColumn({ type: 'string', id: 'Status' })
+        data.addColumn({ type: 'string', id: 'style', role: 'style' })
+        data.addColumn({ type: 'string', role: 'tooltip' })
+        data.addColumn({ type: 'date', id: 'Start' })
+        data.addColumn({ type: 'date', id: 'End' })
+      }
+
       if (data) this.chartObject.draw(data, this.options)
     },
 
