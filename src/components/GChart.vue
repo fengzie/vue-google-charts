@@ -88,24 +88,23 @@ export default {
     drawChart () {
       if (!chartsLib || !this.chartObject) return
 
-      let data = this.getValidChartData()
-      console.log('The gchart type is:' + this.type)
-      if (
-        this.type === 'Timeline' &&
-        this.data instanceof chartsLib.visualization.DataTable
-      ) {
-        data.addColumn({ type: 'string', id: 'MachineID' })
-        data.addColumn({ type: 'string', id: 'Status' })
-        data.addColumn({ type: 'string', id: 'style', role: 'style' })
-        data.addColumn({ type: 'string', role: 'tooltip' })
-        data.addColumn({ type: 'date', id: 'Start' })
-        data.addColumn({ type: 'date', id: 'End' })
-      }
+      const data = this.getValidChartData()
 
       if (data) this.chartObject.draw(data, this.options)
     },
 
     getValidChartData () {
+      if (this.type.toString() === 'Timeline') {
+        console.log('In the block')
+        var dataTable = new chartsLib.visualization.DataTable()
+        dataTable.addColumn({ type: 'string', id: 'Name' })
+        dataTable.addColumn({ type: 'string', id: 'Status' })
+        dataTable.addColumn({ type: 'string', id: 'style', role: 'style' })
+        dataTable.addColumn({ type: 'date', id: 'Start' })
+        dataTable.addColumn({ type: 'date', id: 'End' })
+        dataTable.addRows(this.data)
+        return dataTable
+      }
       if (this.data instanceof chartsLib.visualization.DataTable) return this.data
       if (this.data instanceof chartsLib.visualization.DataView) return this.data
       if (Array.isArray(this.data)) return chartsLib.visualization.arrayToDataTable(this.data)
